@@ -1,0 +1,128 @@
+<div
+  class="flex flex-col items-center justify-center w-full h-screen px-4 bg-gray-100 dark:bg-[#fdfdfd]"
+>
+  <h1 class="text-2xl font-bold mb-4 text-center">Iniciar Sesión</h1>
+  <p class="text-sm text-gray-500 mb-6 text-center">
+    Inicia sesión para acceder a todas las funcionalidades de la aplicación.
+  </p>
+
+  <div class="space-y-4 w-full max-w-sm sm:max-w-md md:max-w-lg">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="flex flex-col w-full items-center justify-center gap-4"
+    >
+      <!-- Correo -->
+      <div class="relative w-full flex flex-col gap-2">
+        <label for="email" class="text-sm dark:text-gray-400"
+          >Correo</label
+        >
+        <input
+          type="email"
+          class="w-full border dark:border-[#161616] rounded-md p-2 focus:ring-0"
+          formControlName="email"
+        />
+        <div
+          *ngIf="email.invalid && email.touched"
+          class="text-sm mt-1 px-3 py-2 bg-red-50 border border-red-300 text-red-700 rounded-md max-w-full break-words transition-all duration-300"
+        >
+          <p *ngIf="email?.errors?.['required']">El email es obligatorio</p>
+          <p *ngIf="email?.errors?.['email']">El email no es válido</p>
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="relative w-full flex flex-col gap-2">
+        <div class="flex justify-between w-full">
+          <label for="password" class="text-sm dark:text-gray-400">
+            Contraseña
+          </label>
+          <a
+            routerLink="/auth/forgot-password"
+            class="text-end text-sm hover:underline"
+            >¿Olvidaste tu contraseña?</a
+          >
+        </div>
+
+        <div class="relative w-full">
+          <input
+            type="password"
+            class="w-full border dark:border-[#161616] rounded-md p-2 focus:ring-0 pr-10"
+            formControlName="password"
+          />
+          <button
+            type="button"
+            id="eyePassword"
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          >
+            <!-- Icono -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-eye"
+            >
+              <path
+                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+              />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </button>
+        </div>
+
+        <div
+          *ngIf="password.invalid && password.touched"
+          class="text-sm mt-1 px-3 py-2 bg-red-50 border border-red-300 text-red-700 rounded-md max-w-full break-words transition-all duration-300"
+        >
+          <p *ngIf="password?.errors?.['required']">
+            La contraseña es obligatoria
+          </p>
+          <p *ngIf="password?.errors?.['minlength']">
+            La contraseña debe tener al menos 6 caracteres
+          </p>
+        </div>
+      </div>
+
+      <!-- Link a registro -->
+      <div class="flex justify-end w-full text-sm space-x-2">
+        <p>No tienes cuenta?</p>
+        <a
+          routerLink="/auth/register"
+          class="text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out hover:underline"
+          >Regístrate</a
+        >
+      </div>
+
+      <!-- Error -->
+      <div *ngIf="errorMessage" class="error-message text-red-500 text-center">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Botón login -->
+      <button
+        type="submit"
+        class="bg-blue-500 dark:text-white text-sm font-bold py-2 px-4 w-full border dark:border-[#161616] rounded-md transition disabled:bg-gray-300"
+        [disabled]="form.invalid"
+      >
+        Iniciar sesión
+      </button>
+    </form>
+
+    <!-- Login con Google -->
+    <app-google-login [text]="'Login with Google'"></app-google-login>
+
+    <!-- Volver -->
+    <a
+      routerLink="/"
+      class="block text-center bg-slate-500 dark:text-white text-sm font-bold py-2 px-4 w-full border dark:border-[#161616] rounded-md transition"
+    >
+      Volver
+    </a>
+  </div>
+</div>

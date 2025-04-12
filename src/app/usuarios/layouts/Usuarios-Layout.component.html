@@ -1,0 +1,29 @@
+<!-- <app-nav-lateral
+  [sidebarExpandido]="sidebarExpandido"
+  (sidebarToggle)="onSidebarToggle($event)"
+></app-nav-lateral>
+
+<app-nav-top></app-nav-top>
+
+<main
+  class="transition-all duration-300 mt-16 p-4 rounded-lg bo bg-white overflow-hidden"
+  [ngClass]="sidebarExpandido ? 'ml-56' : 'ml-16'"
+>
+  <router-outlet></router-outlet>
+</main> -->
+
+<app-nav-lateral
+  [sidebarExpandido]="sidebarExpandido"
+  (sidebarToggle)="onSidebarToggle($event)"
+></app-nav-lateral>
+
+<app-nav-top></app-nav-top>
+<!-- border-[#ececf1] -->
+<main
+  class="bg-white transition-all duration-300 mt-16 rounded-lg  border border-gray-300  overflow-hidden h-[calc(100vh-4.5rem)] mr-2"
+  [ngClass]="sidebarExpandido ? 'ml-56' : 'ml-16'"
+>
+  <div class="h-full overflow-y-auto rounded-lg">
+    <router-outlet></router-outlet>
+  </div>
+</main>

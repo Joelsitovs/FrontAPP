@@ -1,0 +1,55 @@
+<!-- backdrop-blur-sm sm:backdrop-blur-lg
+<nav class="fixed top-0 left-0 w-full z-50 bg-[#f5f5f5]">
+  <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 ">
+    <div class="flex justify-between h-16 items-center">
+      <div class="flex items-center gap-5">
+        <a
+          routerLink="/"
+          class="flex items-center gap-2 text-2xl font-bold text-gray-800 hover:scale-110 transition ease-in-out"
+        >
+          <img
+            src="/assets/images/logo2.webp"
+            alt="Logo"
+            class="w-full h-10 object-contain"
+          />
+        </a>
+
+        <a
+          routerLink="/usuarios/registro"
+          routerLinkActive="active"
+          class="hover:scale-110 transition ease-in-out font-bold"
+        >
+          Registrar Usuario
+        </a>
+        <a
+          routerLink="/usuarios/listado"
+          routerLinkActive="active"
+          class="hover:scale-110 transition ease-in-out font-bold"
+        >
+          Lista de Usuarios
+        </a>
+      </div>
+      <div *ngIf="!authChecked" class="text-sm text-gray-500">
+        Cargando sesión...
+      </div>
+
+      <div class="flex space-x-1 sm:space-x-6 items-center" *ngIf="authChecked">
+        <a
+          *ngIf="!isLoggedIn"
+          routerLink="/auth/login"
+          class="hover:scale-110 transition ease-in-out text-center font-bold"
+        >
+          Iniciar sesión
+        </a>
+
+        <button
+          *ngIf="isLoggedIn"
+          (click)="logout()"
+          class="hover:scale-110 transition ease-in-out text-center"
+        >
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</nav> -->

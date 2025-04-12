@@ -1,0 +1,126 @@
+<section
+  id="Inicio"
+  class="w-full min-h-screen flex flex-col sm:flex-row items-center justify-center pt-16 px-4 overflow-hidden border-none"
+>
+  <div class="flex flex-col items-center justify-center w-80">
+    <h2 *ngIf="usuario && !cargando" class="text-2xl font-bold mb-4">
+      Editar Usuario
+    </h2>
+
+    <div *ngIf="cargando">Cargando datos del usuario...</div>
+
+    <div *ngIf="usuario && !cargando" class="flex flex-col gap-4 items-center">
+      <!-- Aquí puedes agregar un formulario para editar -->
+      <form
+        action=""
+        class="flex flex-col gap-4 w-90"
+        [formGroup]="form"
+        (ngSubmit)="guardarCambios()"
+      >
+        <div class="relative w-full flex flex-col gap-2">
+          <label for="Nombre" class="text-sm text-gray-500 flex items-start"
+            >Nombre</label
+          >
+          <input
+            type="text"
+            placeholder="Nombre"
+            formControlName="nombre"
+            class="border px-4 py-2 rounded shadow"
+          />
+          <div
+            class="text-red-500 text-base"
+            *ngIf="nombre.invalid && nombre.touched"
+          >
+            <p>El nombre es requerido</p>
+          </div>
+        </div>
+        <div class="relative w-full flex flex-col gap-2">
+          <label for="dni" class="text-sm text-gray-500 mb-1 block">
+            DNI / NIE / Pasaporte
+          </label>
+          <input
+            type="text"
+            placeholder="DNI"
+            formControlName="dni"
+            class="border px-4 py-2 rounded shadow"
+          />
+          <div
+            class="text-red-500 text-base"
+            *ngIf="dni.invalid && dni.touched"
+          >
+            <p>El DNI / NIE / Pasaporte es requerido</p>
+          </div>
+        </div>
+        <div class="relative w-full flex flex-col gap-2">
+          <label for="email" class="text-sm text-gray-500 flex items-start"
+            >Correo</label
+          >
+          <input
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+            class="border px-4 py-2 rounded shadow"
+          />
+          <div
+            class="text-red-500 text-base"
+            *ngIf="email.invalid && email.touched"
+          >
+            <p *ngIf="email?.errors?.['required']">El correo es requerido</p>
+            <p *ngIf="email?.errors?.['email']">El correo no es válido</p>
+          </div>
+        </div>
+        <div class="relative w-full flex flex-col gap-2">
+          <label for="date" class="text-sm text-gray-500">
+            Fecha de Nacimiento
+          </label>
+          <input
+            type="date"
+            formControlName="fecha_nacimiento"
+            class="border px-4 py-2 rounded shadow"
+            [attr.max]="maxFecha"
+          />
+          <div
+            *ngIf="
+              fecha_nacimiento.hasError('required') && fecha_nacimiento.touched
+            "
+            class="text-red-500 text-base"
+          >
+            La fecha es requerida
+          </div>
+
+          <div
+            *ngIf="
+              fecha_nacimiento.hasError('fechaFutura')
+            "
+            class="text-red-500 text-base"
+          >
+            La fecha no puede ser mayor a la fecha actual
+          </div>
+        </div>
+        <div class="flex items-center gap-4 flex-col">
+          <img
+            *ngIf="previewUrl"
+            [src]="previewUrl"
+            alt="Previsualización"
+            class="w-12 h-12 rounded-full object-cover border"
+          />
+
+          <input
+            id="foto"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+          />
+        </div>
+
+        <button [disabled]="form.invalid">Guardar</button>
+      </form>
+      <div>
+        <!-- {{message}} -->
+      </div>
+    </div>
+  </div>
+  <app-toast #toast></app-toast>
+
+</section>

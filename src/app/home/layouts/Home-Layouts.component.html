@@ -1,0 +1,10 @@
+<!-- <app-nav-lateral
+  [sidebarExpandido]="sidebarExpandido"
+  (sidebarToggle)="onSidebarToggle($event)"
+></app-nav-lateral> -->
+
+<app-nav-top> </app-nav-top>
+<!-- [ngClass]="sidebarExpandido ? 'ml-56' : 'ml-16'" -->
+<main class="transition-all duration-300">
+  <router-outlet></router-outlet>
+</main>
